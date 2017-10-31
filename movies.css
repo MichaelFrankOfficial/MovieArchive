@@ -1,0 +1,16 @@
+body{
+    background-image: url("http://thecinema6.com/wp-content/uploads/2012/07/cinema.jpg");
+}
+h1{
+    font-size: 50px;
+    text-align: center;
+    color: white;
+}
+p{
+    font-size: 15px;
+    color: white;
+    text-align: center;
+}
+div{
+    text-align: center;
+}

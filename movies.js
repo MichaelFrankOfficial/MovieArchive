@@ -4,7 +4,9 @@ var listMovies = document.getElementById("list-movie-button"),
     userMovieGenre = document.getElementById("movie-genre"),
     userMovieDescription = document.getElementById("movie-description"),
     userMovieSection = document.getElementById("user-movie-sec"),
+    confirmationBox = document.getElementById("confirmation-box"),
     printArea = document.getElementById("print-area");
+
 
 var movies = [];
 
@@ -13,30 +15,27 @@ var Movie = function Movie(movieName, movieGenre, movieDescription){
     this.movieGenre = movieGenre;
     this.movieDescription = movieDescription;
     this.getFormat = function getFormat(){
-        return "Movie Title : " + movieName + "<br>" + "Genre : " + movieGenre + "<br>" + "Details: " + "<br>" + movieDescription; 
+        return "<p>Movie Title : " + movieName + "<br>" + "Genre : " + movieGenre + "<br>" + "Details: " + "<br>" + movieDescription + "</p>"; 
     }
-}
-var userMovies = function userMovies(){
-    movieName = userMovieTitle.value;
-    movieGenre = userMovieGenre.value;
-    movieDescription = userMovieDescription.value;
-    return new Movie(movieName, movieGenre, movieDescription);
 }
 
 addMovie = addMovie.addEventListener("click", function(){
-    movieName = userMovieTitle;
-    movieGenre = userMovieGenre;
-    movieDescription = userMovieDescription;
-    return new Movie(movieName, movieGenre, movieDescription);
+    var newMovie = new Movie(userMovieTitle.value, userMovieGenre.value, userMovieDescription.value);
+    movies.push(newMovie);
+    confirmationBox.innerHTML = "<p><strong>" + userMovieTitle.value + " Has Been Added To List!</strong></p>";
+    userMovieTitle.value = "";
+    userMovieGenre.value = "";
+    userMovieDescription.value = "";
 });
 
 var renderMovies = function renderMovies(){
     printArea.innerText="";
     for(var i = 0; i < movies.length;i++){
-
+        printArea.innerHTML += movies[i].getFormat();
     }
 }
 
 listMovies = listMovies.addEventListener("click", function(){
-    printArea.innerText = movies[i];
+    renderMovies();
+    confirmationBox.innerHTML = "";
 });
